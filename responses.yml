@@ -1,0 +1,12 @@
+responses:
+   utter_greet:
+       - text: |
+           Hello! How can I help you?
+       - text: |
+           Hi!
+   utter_number_of_seats:
+       - text: |
+           How many seats would you like to reserve?
+   utter_ask_timing:
+       - text: |
+           When would you like to book a reservation? (We are only open from 7pm to 10pm)

@@ -1,0 +1,100 @@
+version: "2.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: reservation and timing
+  steps:
+  - intent: table_booking
+  - action: utter_number_of_seats
+  - intent: number_of_seats
+  - slot_was_set:
+      - number_of_seats: 2
+      - action: utter_ask_AC
+      - action: utter_ask_timing
+      - intent: timing
+      - action: utter_final
+      
+  - slot_was_set:
+      - number_of_seats: 3
+      - action: utter_ask_AC
+      - action: utter_ask_timing
+      - intent: timing
+      - action: utter_final
+
+  - slot_was_set:
+      - number_of_seats: 4
+      - action: utter_ask_AC
+      - action: utter_ask_timing
+      - intent: timing
+      - action: utter_final
+
+  - slot_was_set:
+      - number_of_seats: 5
+      - action: utter_ask_AC
+      - action: utter_ask_timing
+      - intent: timing
+      - action: utter_final
+  
+  - slot_was_set:
+      - number_of_seats: 6
+      - action: utter_ask_AC
+      - action: utter_ask_timing
+      - intent: timing
+      - action: utter_final  
+
+- story: reservation and timing 2
+  steps:
+  - intent: table_booking_with_number_of_people
+  - action: utter_ask_AC
+  - action: utter_ask_timing
+  - intent: timing
+  - action: utter_final
+
+- story: check in time
+  steps:
+  - intent: faq_check_in_time
+  - action: utter_check_in_time
+
+- story: days open
+  steps:
+  - intent: faq_days_open
+  - action: utter_days_store_open
+
+- story: reservation cancel
+  steps:
+  - intent: faq_cancel_reservation
+  - action: utter_cancel_reservation
+
+- story: special items
+  steps:
+  - intent: faq_specials
+  - action: utter_special_info
+
+

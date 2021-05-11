@@ -1,0 +1,115 @@
+version: "2.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - table_booking
+  - table_booking_with_number_of_people
+  - number_of_seats
+  - timing
+  - AC
+  - Non-AC
+  - faq_check_in_time
+  - faq_days_open
+  - faq_cancel_reservation
+  - faq_specials
+  
+
+entities:
+- number_of_seats
+- AC_non_AC
+- timing
+
+slots:
+  number_of_seats:
+    type: unfeaturized
+    influence_conversation: false
+  AC_non_AC:
+    type: categorical
+    values:
+    - AC
+    - Non-AC
+  timing:
+    type: unfeaturized
+    influence_conversation: false
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_number_of_seats:
+  - text: "How many seats would you like to reserve?"
+
+  utter_ask_AC:
+  - text: "Which section would you like to book?"
+    buttons:
+      - title: "AC"
+        payload: /AC{"AC_non_AC":"AC"}
+      - title: "Non-AC"
+        payload: /Non-AC{"AC_non_AC":"Non-AC"}
+
+  utter_ask_timing:
+  - text: "When would you like to book a reservation? (We are only open from 7pm to 10pm)"
+
+  utter_final:
+  - text: "You have reserved {number_of_seats} seats in our {AC_non_AC} section for {timing}. Thanks!"
+
+  utter_check_in_time:
+  - text: The restaurant opens at 7pm and closes at 10pm.
+
+  utter_days_store_open:
+  - text: The restaurant is open each and every day.
+
+  utter_cancel_reservation:
+  - text: To cancel a reservation, simply call us at +91 9876543210 and cancel your reservation
+
+  utter_special_info:
+  - text: Our chef is a master of the Italian cuisine. Our core speciality is our pasta, which is renowned throughout the city.
+
+
+
+actions:
+- utter_greet
+- utter_cheer_up
+- utter_did_that_help
+- utter_happy
+- utter_goodbye
+- utter_iamabot
+- utter_number_of_seats
+- utter_ask_AC
+- utter_ask_timing
+- utter_final
+- utter_check_in_time
+- utter_days_store_open
+- utter_cancel_reservation
+- utter_special_info
+
+forms:
+  newsletter_form:
+    email:
+    - type: from_text
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
